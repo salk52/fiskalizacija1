@@ -97,10 +97,8 @@ public partial class Fiskalizacija1Service
 		var promijeniPodatkeRacunaZahtjev = new PromijeniPodatkeRacunaZahtjev
 		{
 			Racun = racun,
-			Zaglavlje = GetRequestHeader()
+			Zaglavlje = GetRequestHeader(IdPoruke)
 		};
-
-		promijeniPodatkeRacunaZahtjev.Zaglavlje.IdPoruke = IdPoruke;
 
 		FiskalizacijaHelpers.Sign(promijeniPodatkeRacunaZahtjev, Certificate);
 
@@ -118,10 +116,8 @@ public partial class Fiskalizacija1Service
 		var promijeniNacPlacZahtjev = new PromijeniNacPlacZahtjev
 		{
 			Racun = racun,
-			Zaglavlje = GetRequestHeader()
+			Zaglavlje = GetRequestHeader(IdPoruke)
 		};
-
-		promijeniNacPlacZahtjev.Zaglavlje.IdPoruke = IdPoruke;
 
 		FiskalizacijaHelpers.Sign(promijeniNacPlacZahtjev, Certificate);
 
@@ -195,11 +191,11 @@ public partial class Fiskalizacija1Service
 		return response;
 	}
 
-	public static ZaglavljeType GetRequestHeader()
+	public static ZaglavljeType GetRequestHeader(string IdPoruke = null)
 	{
 		return new ZaglavljeType
 		{
-			IdPoruke = Guid.NewGuid().ToString(),
+			IdPoruke = IdPoruke is null ? Guid.NewGuid().ToString() : IdPoruke,
 			DatumVrijeme = DateTime.Now.ToLongString()
 		};
 	}
