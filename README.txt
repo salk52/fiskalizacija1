@@ -1,0 +1,1 @@
+Demo primjer za Fiskalizaciju 1.0 u C#-u

@@ -1,0 +1,16 @@
+/.vs
+/packages
+obj
+bin
+*.user
+*.nupkg
+nuget.exe
+/TestResults
+
+docs/*.html
+README.html
+/*.cmd
+/*.ps1
+
+11111111111.A.1.p12
+appsettings.Development.json
